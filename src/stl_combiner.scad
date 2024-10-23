@@ -23,7 +23,7 @@ module combine_stl(stl_array, spacing=18, sprue_len=2.5, sprue_radius=0.8) {
     union() {
         for (i = [0 : len(stl_array) - 1]) {
             stl = stl_array[i];
-            translate([i * spacing, 0, 0]) import(stl);
+            translate([i * spacing, 0, 0])rotate([0,0,90])import(stl);
         }
 
         gen_sprues(len(stl_array) - 1);

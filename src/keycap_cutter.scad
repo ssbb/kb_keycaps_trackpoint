@@ -5,7 +5,6 @@ key_spread_choc_y = 17;
 key_spread_mx_x = 19;
 key_spread_mx_y = 19;
 
-
 module draw_trackpoint(d, h, key_stagger) {
 
     // We are using the same method for determining where to place the
@@ -20,7 +19,10 @@ module draw_trackpoint(d, h, key_stagger) {
     //
     // Since the key positions always balance each other out, x is always 0
     // And for y we only need to divide the key_stagger by 2
-    avg_y = -key_stagger / 2;
+
+    // ^ IGNORE above. Just always render at 0 (between home and top row on homing column)
+    avg_y = 0;
+    // avg_y = -key_stagger / 2;
     translate([0, avg_y, 0])
         cylinder($fn=60, d=d, h=h, center=true);
 }
@@ -60,7 +62,6 @@ module draw_keycaps(keycap_top_left,
     if(output == "bottom_right" || output == "preview")
         draw_keycap(keycap_bottom_right, +offset_x, -offset_y);
 }
-
 
 module _cut_keycaps(keycap_top_left,
                     keycap_top_right,
@@ -155,7 +156,7 @@ module gen_sprued_keycaps(keycap_top_left,
                           tp_height,
                           debug=false) {
 
-    outputs = ["top_left", "top_right", "bottom_left", "bottom_right"];
+  outputs = ["top_right", "bottom_right", "top_left"];
     sprue_spacing = (
         key_profile == "mx"
             ? key_spread_mx_x

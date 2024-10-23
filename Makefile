@@ -18,14 +18,10 @@ SPREADY ?= 0
 # Set to true to draw the trackpoint cylinder used for cutting out the hole
 DEBUG ?= false
 
-# These options require OpenScad snapshot
-OPENSCAD="/Applications/OpenSCAD Snapshot.app/Contents/MacOS/OpenSCAD" --enable=manifold
-
-# This will work with the stable openscad, but will be a bit slow
-#OPENSCAD="/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+OPENSCAD="/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
 
 # Don't change anything below here unless you know what you are doing.
-OPENSCAD_OPTIONS=--export-format binstl
+OPENSCAD_OPTIONS=--export-format binstl --enable predictible-output --enable fast-csg --debug all
 OPENSCAD_CMD=$(OPENSCAD) $(OPENSCAD_OPTIONS)
 
 # Directories
